@@ -9,7 +9,8 @@ import {
 } from "@clerk/clerk-react";
 import { Package, Star, Trash2, CheckCircle, XCircle } from "lucide-react";
 
-const API_BASE = import.meta.env.VITE_BACKEND_URL || "http://localhost:5000";
+const API_BASE = import.meta.env.VITE_API_URL || "http://localhost:5000/api";
+
 
 export default function Admin() {
   const navigate = useNavigate();
@@ -25,7 +26,7 @@ export default function Admin() {
 
   const fetchTestimonials = async () => {
     try {
-      const res = await fetch(`${API_BASE}/api/testimonials`);
+      const res = await fetch(`${API_BASE}/testimonials`);
       const data = await res.json();
       if (data.success || data.testimonials) {
         setTestimonials(data.testimonials || []);
@@ -39,7 +40,7 @@ export default function Admin() {
 
   const updateStatus = async (id, action) => {
     try {
-      await fetch(`${API_BASE}/api/testimonials/${id}/${action}`, {
+      await fetch(`${API_BASE}/testimonials/${id}/${action}`, {
         method: "PATCH",
       });
       window.dispatchEvent(new CustomEvent("testimonial-approved"));
@@ -52,7 +53,7 @@ export default function Admin() {
   const deleteTestimonial = async (id) => {
     if (!confirm("Delete testimonial?")) return;
     try {
-      await fetch(`${API_BASE}/api/testimonials/${id}`, { method: "DELETE" });
+      await fetch(`${API_BASE}/testimonials/${id}`, { method: "DELETE" });
       fetchTestimonials();
     } catch (err) {
       console.error(err);

@@ -4,7 +4,8 @@ import axios from "axios";
 import { SignedIn, SignedOut, SignInButton, SignOutButton } from "@clerk/clerk-react";
 import { Star, Send, User, Quote } from "lucide-react";
 
-const API_BASE = import.meta.env.VITE_BACKEND_URL || "http://localhost:5000";
+const API_BASE = import.meta.env.VITE_API_URL || "http://localhost:5000/api";
+
 
 export default function TestimonialsPage() {
   const [testimonials, setTestimonials] = useState([]);
@@ -16,7 +17,7 @@ export default function TestimonialsPage() {
 
   const fetchTestimonials = async () => {
     try {
-      const res = await axios.get(`${API_BASE}/api/testimonials?status=approved`);
+      const res = await axios.get(`${API_BASE}/testimonials?status=approved`);
       setTestimonials(res.data.testimonials || []);
       setLoading(false);
     } catch (err) {
@@ -39,7 +40,7 @@ export default function TestimonialsPage() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post(`${API_BASE}/api/testimonials`, {
+      const res = await axios.post(`${API_BASE}/testimonials`, {
         name,
         comment,
         rating,

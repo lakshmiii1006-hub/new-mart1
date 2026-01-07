@@ -4,6 +4,7 @@ import { Edit2, Trash2, Plus } from "lucide-react";
 
 const API_BASE = import.meta.env.VITE_API_URL || "http://localhost:5000/api";
 
+
 const defaultCategories = {
   Dairy: [
     { _id: "1", name: "Amul Milk", priceRange: "₹45-₹65", emoji: "🥛", stock: 50 },
