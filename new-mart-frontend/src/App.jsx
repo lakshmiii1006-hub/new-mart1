@@ -40,3 +40,12 @@ function App() {
 }
 
 export default App;
+// VITE_API_URL=http://localhost:5000/api
+// VITE_CLERK_PUBLISHABLE_KEY=pk_test_ZG9taW5hbnQtZWdyZXQtNzYuY2xlcmsuYWNjb3VudHMuZGV2JA
+// VITE_CLOUDINARY_CLOUD_NAME=dyxijlh28
+
+// MONGO_URI=mongodb+srv://lakshmiii1006_db_user:laksh123@cluster0.0hson3e.mongodb.net/newmart?retryWrites=true&w=majority
+// CLOUDINARY_CLOUD_NAME=dyxijlh28
+// CLOUDINARY_API_KEY=183478453626478
+// CLOUDINARY_API_SECRET=ZYijU72fqpzlWNbd6wznQeSNwc4
+// PORT=5000
