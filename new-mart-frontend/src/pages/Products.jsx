@@ -10,7 +10,7 @@ import {
 const PHONE_NUMBER = "+91 76578 58862";
 
 // ✅ API BASE (already includes /api)
-const API_BASE = import.meta.env.VITE_API_URL || "http://localhost:5000/api";
+const API_BASE = import.meta.env.VITE_API_URL || "http://localhost:5000";
 
 export default function Products() {
   // ✅ IMPORTANT: start EMPTY (backend is source of truth)
