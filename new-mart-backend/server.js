@@ -10,10 +10,26 @@ dotenv.config();
 
 const app = express();
 
-app.use(cors());
+const allowedOrigins = [
+  "https://new-mart-frontend-qwfeg9rdh-lakshmis-projects-872c7411.vercel.app",
+  "https://new-mart1.vercel.app"
+];
+
+app.use(cors({
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
+  methods: ["GET", "POST", "PATCH", "DELETE"],
+  credentials: true
+}));
+
 app.use(express.json());
 
-// ✅ DB CONNECT
+// MongoDB
 mongoose.connect(process.env.MONGO_URI)
   .then(() => console.log("✅ MongoDB Connected"))
   .catch(err => console.error("❌ MongoDB Error", err));
