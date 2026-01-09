@@ -10,21 +10,11 @@ dotenv.config();
 
 const app = express();
 
-const allowedOrigins = [
-  "https://new-mart-frontend-qwfeg9rdh-lakshmis-projects-872c7411.vercel.app",
-  "https://new-mart1.vercel.app"
-];
-
+// ✅ TEMP OPEN CORS (FOR VERCEL)
 app.use(cors({
-  origin: function (origin, callback) {
-    if (!origin || allowedOrigins.includes(origin)) {
-      callback(null, true);
-    } else {
-      callback(new Error("Not allowed by CORS"));
-    }
-  },
-  methods: ["GET", "POST", "PATCH", "DELETE"],
-  credentials: true
+  origin: "*",
+  methods: ["GET", "POST", "PATCH", "DELETE", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"]
 }));
 
 app.use(express.json());
@@ -41,12 +31,5 @@ app.get("/", (req, res) => {
 app.use("/api/products", productRoutes);
 app.use("/api/testimonials", testimonialRoutes);
 
-const PORT = process.env.PORT || 5000;
-
-if (process.env.NODE_ENV !== "production") {
-  app.listen(PORT, () =>
-    console.log(`🚀 Server running on http://localhost:${PORT}`)
-  );
-}
-
+// ❌ NO app.listen() on Vercel
 export default app;
